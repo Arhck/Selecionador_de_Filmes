@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escolha um Filme Aleatoriamente!</title>
+    <style>
+      body {
+        background-color: aqua;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      section {
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        width: 500px;
+        margin: auto;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.623);
+      }
+      button{
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        text-align: justify;
+        border-radius: 10px;
+        margin-left: 10px;
+      }
+      h1 {
+        text-align: center;
+      }
+      h3 {
+        text-align: justify;
+      }
+      input {
+        border-radius: 10px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        text-align: justify;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h1>SELECIONADOR DE FILMES!</h1>
+      <h3>Insira as opções de filmes que você deseja:</h3>
+      <input type="text" id="nome" />
+      <button onclick="addname()" id="btnSubmit">ADD NOME</button>
+      <br /><br />
+      <h3>LISTA DE POSSIBILIDADES</h3>
+      <div id="lista"></div>
+      <br /><br />
+      <button onclick="classic()" onkeydown="classic()">GERAR FILME</button>
+      <br /><br />
+      <div id="res"></div>
+    </section>
+
+    <script>
+      const classics = [];
+
+      function addname() {
+        var nome = document.getElementById("nome");
+        nome.value = String(nome.value);
+        classics.push(nome.value);
+        var lista = document.getElementById("lista");
+        lista.innerHTML = classics;
+        nome.value = "";
+      }
+      document
+        .getElementById("nome")
+        .addEventListener("keypress", function (event) {
+          if (event.keyCode === 13) {
+            document.getElementById("btnSubmit").click();
+          }
+        });
+
+      function classic() {
+        var filme = document.getElementById("res");
+        console.log("called");
+        return (filme.innerHTML =
+          classics[Math.floor(Math.random() * classics.length)]);
+      }
+    </script>
+  </body>
+</html>
